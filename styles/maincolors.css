@@ -33,11 +33,14 @@ Main Color Scheme
 .navbar-custom .dropdown-menu,.bg-darkcolor,
 .accordion-button.collapsed,
 .sidebar-header,
-.btn:hover,
 .gallery-thumb .overlay-mask,
 .slick-arrow:hover,
 .slide__overlay {
-    background-color: #108896;
+    background-color: #224982;
+}
+
+.btn {
+    background-color: #40e391 !important;
 }
 
 .media-heading small,
@@ -51,7 +54,7 @@ h2,
 .social-media a i:hover,
 .team-wrap .member .wrap .info .position li:before,
 ul.custom li {
-    color: #108896;
+    color: #224982;
 }
 
 .service,
@@ -71,12 +74,12 @@ ul.custom li {
 .table>tfoot>tr>th,
 .table>thead>tr>td,
 .table>thead>tr>th {
-    border-color: #108896;
+    border-color: #224982;
 }
 
 .box_icon > .icon:hover > .image,
 .review .review-profile-image img {
-    outline-color: #108896;
+    outline-color: #224982;
 }
 
 /*________  Orange ________  */
@@ -101,7 +104,7 @@ blockquote:before,
 .numscroller,
 .bounce1:after,
 .img-box ul i:hover {
-    color: #EF5030;
+    color: #224982;
 }
 
 a.list-group-item:focus,
@@ -134,7 +137,7 @@ button.list-group-item:hover,
 .accordion-button:hover,
 .navbar-custom li a:hover,
 .navbar-custom li a.active  {
-    background-color: #EF5030;
+    background-color: #224982;
 }
 
 .elements h5,
@@ -142,30 +145,26 @@ button.list-group-item:hover,
 .open>.dropdown-toggle.btn-default:hover,
 .form-control:focus,
 .features i {
-    border-color: #EF5030;
+    border-color: #224982;
 }
 /*________  Yellow  ________  */
-
-.btn {
-    box-shadow: inset 9px 0px 0px 0px #F19F1F;
-}
 
 .navbar,
 .nav>li>a:focus,
 .section-heading h2:before,
 .section-heading h2:after,
 .slick-arrow,.slick-arrow:focus,.bg-darkcolor .btn:hover {
-    background-color: #F19F1F;
+    background-color: #40e391;
 }
 
 .form-control,
 .price-table .featured,
 #map-canvas {
-    border-color: #F19F1F;
+    border-color: #40e391;
 }
 
 .date-category i {
-    color: #F19F1F;
+    color: #40e391;
 }
 /*________  Secondary gray  ________  */
 

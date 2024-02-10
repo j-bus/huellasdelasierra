@@ -1825,7 +1825,7 @@ ul.breadcrumb {
 
 /* Labels */
 
-..badge {
+.badge {
 	padding: .2em .6em .3em;
 	font-size: 16px;
 	font-weight: 600;
