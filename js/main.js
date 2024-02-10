@@ -1,7 +1,7 @@
 /*
 Template Name: PetZ
-Author: Ingrid Kuhn
-Author URI: themeforest/user/ingridk
+Author: Jota
+Author URI: themeforest/user/jota
 Version: 1.1
 */
 
