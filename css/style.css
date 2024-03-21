@@ -456,7 +456,7 @@ i.icon-slider1 {
 /* parallax header */
 
 .parallax-header {
-	background: url('../img/parallaxheader.jpg') no-repeat;
+	background: url('../img/layerslider/slide2_1.jpg') no-repeat;
 	background-size: cover;
 	display: flex;
 	justify-content: center;
