@@ -12,7 +12,7 @@ $(window).on("load", function(){
 
 	// custom icon
 	var customIcon = L.icon({
-	iconUrl: 'img/hdls/Logo HS_Alternativo_sobre blanco_vertical limpio.png',
+	iconUrl: 'img/hdls/huella_azul_redonda.png',
 	iconSize:     [64, 64], // size of the icon
 	iconAnchor:   [32, 63] // point of the icon which will correspond to marker's location
 	});
