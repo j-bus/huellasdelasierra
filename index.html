@@ -30,6 +30,192 @@
       <link href="styles/maincolors.css" rel="stylesheet">
       <!-- Favicons-->
       <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+      <!-- Carousel CSS -->
+      <style>
+         .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+            margin-top: 70px;
+         }
+         .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+         }
+         .carousel-slide {
+            min-width: 100%;
+            position: relative;
+         }
+         .carousel-slide img {
+            width: 100%;
+            height: 700px;
+            object-fit: cover;
+            display: block;
+         }
+         .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            z-index: 10;
+            transition: background-color 0.3s, transform 0.2s;
+            border-radius: 4px;
+         }
+         .carousel-btn:hover {
+            background-color: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+         }
+         .carousel-btn.prev {
+            left: 20px;
+         }
+         .carousel-btn.next {
+            right: 20px;
+         }
+         .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+         }
+         .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+         }
+         .carousel-indicator:hover {
+            transform: scale(1.2);
+         }
+         .carousel-indicator.active {
+            background-color: #fff;
+         }
+         .carousel-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            text-align: center;
+         }
+         .carousel-overlay .welcome-box {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px 50px;
+            border-radius: 8px;
+         }
+         @media (max-width: 768px) {
+            .carousel-slide img {
+               height: 450px;
+            }
+            .carousel-btn {
+               padding: 10px 15px;
+               font-size: 18px;
+            }
+            .carousel-btn.prev {
+               left: 10px;
+            }
+            .carousel-btn.next {
+               right: 10px;
+            }
+            .carousel-overlay .welcome-box {
+               padding: 20px 30px;
+            }
+            .carousel-overlay h1 {
+               font-size: 1.5rem;
+            }
+            .carousel-overlay {
+               display: none;
+            }
+            .carousel-container {
+               margin-top: 56px;
+            }
+         }
+
+         /* Bordes redondeados para imágenes de secciones */
+         #services-index .img-fluid,
+         #aboutus .img-fluid,
+         #callout2 .img-fluid {
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+         }
+
+         /* Imagen del gato en Ven a visitarnos (desktop) */
+         #callout2 .row {
+            align-items: center;
+         }
+         #callout2 .callout-img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            object-fit: cover;
+            object-position: center top;
+         }
+
+         /* Imágenes del slider de servicios con tamaño uniforme */
+         .slider-3 .box_icon .image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            border-radius: 12px;
+         }
+         .slider-3 .box_icon .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+         }
+
+         /* Ajustes para móvil */
+         @media (max-width: 768px) {
+            #services-index .img-fluid,
+            #aboutus .img-fluid,
+            #callout2 .img-fluid {
+               max-width: 100%;
+               height: auto;
+               margin: 20px auto;
+               display: block;
+            }
+
+            /* Sección Ven a visitarnos en móvil */
+            #callout2 .row {
+               flex-direction: column-reverse;
+            }
+            #callout2 .col-lg-3 {
+               width: 100%;
+               margin-top: 25px;
+            }
+            #callout2 .callout-img {
+               max-width: 100%;
+               width: 100%;
+               max-height: 300px;
+               object-fit: cover;
+               margin: 0 auto;
+               border-radius: 12px;
+            }
+            #callout2 h3 {
+               text-align: center;
+            }
+            #callout2 p {
+               text-align: center;
+            }
+            #callout2 .btn {
+               display: block;
+               margin: 0 auto;
+               width: fit-content;
+            }
+         }
+      </style>
 	  	  	    <!-- Switcher Only -->
 	<link rel="stylesheet" id="switcher-css" type="text/css" href="switcher/css/switcher.css" media="all" />
 	<!-- END Switcher Styles -->
@@ -74,24 +260,64 @@
          </div>
       </nav>
 	   <!-- /navbar ends -->
-      <!-- ==== Slider ==== -->
-	  <div class="fixed-header">
-      <div class="container-fluid parallax-header"  
-         data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% 50px;" data-bottom-top="background-position: 50% -50px;">
-         <div class="container">
-            <div class="welcome-box col-lg-5 text-light text-center bg-darkcolor" data--100-start="margin-top:100px;transform:scale(1)" data--100-top="margin-top:0px;transform:scale(0.7);">
+      <!-- ==== Carousel ==== -->
+      <div class="carousel-container">
+         <div class="carousel" id="mainCarousel">
+            <div class="carousel-slide">
+               <img src="images/centro-de-salud-para-tu-mascota-y-bienestar-en-moralzarzal-848x566-848x566.jpg" alt="Centro de salud para tu mascota">
+            </div>
+            <div class="carousel-slide">
+               <img src="images/veterinarios-para-la-salud-y-alimentación-de-mascotas-en-la-Sierra-de-Madrid-848x566.jpg" alt="Veterinarios para mascotas">
+            </div>
+            <div class="carousel-slide">
+               <img src="images/veterinairo-en-Moralzarzal-para-mascotas-848x566.jpg" alt="Veterinario en Moralzarzal">
+            </div>
+            <div class="carousel-slide">
+               <img src="images/tecnologia-de-salud-para-mascotas-en-huellas-de-la-sierra-en-Moralzarzal-848x566.jpg" alt="Tecnología de salud para mascotas">
+            </div>
+            <div class="carousel-slide">
+               <img src="images/laboratorio-analitica-para-mascotas-en-Moralzarzal-848x566.jpg" alt="Laboratorio analítica para mascotas">
+            </div>
+            <div class="carousel-slide">
+               <img src="images/huellas-de-la-sierra-centro-veterinario-en-la-localidad-de-Moralzarzal-848x566.jpg" alt="Huellas de la Sierra centro veterinario">
+            </div>
+            <div class="carousel-slide">
+               <img src="images/clinica-veterinario-huellas-de-la-sierra-en-el-municipio-de-Moralzarzal-848x566.jpg" alt="Clínica veterinaria Huellas de la Sierra">
+            </div>
+            <div class="carousel-slide">
+               <img src="images/clinica-para-perros-y-gatos-en-el-municipio-de-Moralzarzal-848x566.jpg" alt="Clínica para perros y gatos">
+            </div>
+            <div class="carousel-slide">
+               <img src="images/centro-de-salud-para-mascotas-en-Moralzarzal-848x566.jpg" alt="Centro de salud para mascotas">
+            </div>
+         </div>
+
+         <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+         <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+
+         <div class="carousel-indicators">
+            <span class="carousel-indicator active" onclick="goToSlide(0)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(1)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(2)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(3)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(4)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(5)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(6)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(7)"></span>
+            <span class="carousel-indicator" onclick="goToSlide(8)"></span>
+         </div>
+
+         <div class="carousel-overlay">
+            <div class="welcome-box text-light text-center">
                <h1>Huellas de la Sierra</h1>
-               <!--the div below is hidden on small screens  -->
                <div class="d-none d-md-block">
                   <p class="header-p">Tu clínica veterinaría en Moralzarzal</p>
-                  <a class="btn btn-primary " href="#contacto">Contáctanos</a>
+                  <a class="btn btn-primary" href="#contacto">Contáctanos</a>
                </div>
-               <!--/d-none  -->
             </div>
          </div>
       </div>
-	  </div>
-      <!-- /container-fluid -->  
+      <!-- /carousel-container -->  
       <!-- SVG Curve Up -->
       <svg id="curveUp" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 100 100" preserveAspectRatio="none" fill="#fff">
          <path d="M0 100 C 20 0 50 0 100 100 Z"/>
@@ -119,7 +345,7 @@
 			</div>
             <!-- /col-lg-->
             <div class="col-lg-5">
-               <img src="img/servicesintro.png" class="img-fluid" alt="">
+               <img src="img/animal1.jpg" class="img-fluid" alt="Mascota en Huellas de la Sierra">
             </div>
             <!-- /col-lg-->
 			 </div>
@@ -138,7 +364,7 @@
          <div class="icon">
             <!-- icon -->
             <div class="image">
-               <img src="img/service2.jpg" class="img-fluid" alt="">
+               <img src="img/service-medicina-interna.jpg" class="img-fluid" alt="Medicina interna">
             </div>
             <div class="info">
                <h4>Medicina interna</h4>
@@ -158,7 +384,7 @@
          <div class="icon">
             <!-- icon -->
             <div class="image">
-               <img src="img/service7.png" class="img-fluid" alt="">
+               <img src="img/service-medicina-preventiva.jpg" class="img-fluid" alt="Medicina preventiva">
             </div>
             <div class="info">
                <h4>Medicina preventiva</h4>
@@ -175,7 +401,7 @@
          <div class="icon">
             <!-- icon -->
             <div class="image">
-               <img src="img/service3.jpg" class="img-fluid" alt="">
+               <img src="img/service-diagnostico-imagen.jpg" class="img-fluid" alt="Diagnóstico por imagen">
             </div>
             <div class="info">
                <h4>Diagnóstico por imagen</h4>
@@ -192,7 +418,7 @@
          <div class="icon">
             <!-- icon -->
             <div class="image">
-               <img src="img/service8.png" class="img-fluid" alt="">
+               <img src="img/service-diagnostico-laboral.jpg" class="img-fluid" alt="Diagnóstico laboratorial">
             </div>
             <div class="info">
                <h4>Diagnóstico laboratorial</h4>
@@ -209,7 +435,7 @@
          <div class="icon">
             <!-- icon -->
             <div class="image">
-               <img src="img/service9.png" class="img-fluid" alt="">
+               <img src="img/service-cirugia-anestesia.jpg" class="img-fluid" alt="Cirugía y anestesia">
             </div>
             <div class="info">
                <h4>Cirugía y anestesia</h4>
@@ -226,7 +452,7 @@
          <div class="icon">
             <!-- icon -->
             <div class="image">
-               <img src="img/service6.png" class="img-fluid" alt="">
+               <img src="img/service-dermatologia.jpg" class="img-fluid" alt="Dermatología y citología">
             </div>
             <div class="info">
                <h4>Dermatología y citología</h4>
@@ -253,7 +479,7 @@
             <div class="row">
                <div class="col-lg-3">
                   <!-- image  -->
-                  <img src="img/callout.png" class="img-fluid callout-img" alt="" >
+                  <img src="img/animal2.jpg" class="img-fluid callout-img" alt="Gatito en Huellas de la Sierra">
                </div>
                <!-- text box  -->
                <div class="col-lg-7 offset-lg-1">
@@ -287,15 +513,8 @@
             <!-- Accordion -->
 <!-- /.accordion -->         </div>
          <!-- /col-lg-7-->
-         <!-- Parallax object -->
-         <div class="parallax-object1 hidden-sm d-none d-lg-block"  data-100-start="right: 0%;" 
-            data-center-bottom="right:30%;"  >
-            <!-- Image -->
-            <img src="img/illustrations/petbowl.png" alt="">
-         </div>
-         <!-- /parallax-object1-->
          <div class=" col-lg-5" >
-            <img src="img/about-index.png" class="img-fluid" alt="">
+            <img src="img/animal6.jpg" class="img-fluid" alt="Equipo de Huellas de la Sierra">
          </div>
          <!-- /col-lg-5-->
       </div>
@@ -403,6 +622,66 @@
       <!-- Open street maps-->
       <script src="js/map.js"></script>
 	    <!--Mail Chimp validator -->
-      <script src='js/mc-validate.js'></script>	
+      <script src='js/mc-validate.js'></script>
+      <!-- Carousel Script -->
+      <script>
+         const carousel = document.getElementById('mainCarousel');
+         const indicators = document.querySelectorAll('.carousel-indicator');
+         const totalSlides = 9;
+         let currentSlide = 0;
+         let autoPlayInterval;
+
+         function updateCarousel() {
+            carousel.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+            indicators.forEach(function(indicator, index) {
+               if (index === currentSlide) {
+                  indicator.classList.add('active');
+               } else {
+                  indicator.classList.remove('active');
+               }
+            });
+         }
+
+         function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+            resetAutoPlay();
+         }
+
+         function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoPlay();
+         }
+
+         function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoPlay();
+         }
+
+         function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+         }
+
+         function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+         }
+
+         // Iniciar reproducción automática
+         startAutoPlay();
+
+         // Pausar al pasar el mouse por encima
+         var container = document.querySelector('.carousel-container');
+         container.addEventListener('mouseenter', function() { clearInterval(autoPlayInterval); });
+         container.addEventListener('mouseleave', startAutoPlay);
+
+         // Soporte para teclado
+         document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+         });
+      </script>
    </body>
 </html>
